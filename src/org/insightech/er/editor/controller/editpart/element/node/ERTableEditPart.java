@@ -87,7 +87,7 @@ public class ERTableEditPart extends TableViewEditPart implements IResizable {
 
         final String tableName = copyTable.getPhysicalName();
 
-        if (OracleDBManager.ID.equals(diagram.getDatabase()) && !Check.isEmpty(tableName)) {
+        if (!OracleDBManager.VERSION_12C && OracleDBManager.ID.equals(diagram.getDatabase()) && !Check.isEmpty(tableName)) {
             final NormalColumn autoIncrementColumn = copyTable.getAutoIncrementColumn();
 
             if (autoIncrementColumn != null) {
