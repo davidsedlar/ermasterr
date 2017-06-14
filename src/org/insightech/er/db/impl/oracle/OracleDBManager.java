@@ -20,6 +20,7 @@ import org.insightech.er.editor.model.diagram_contents.not_element.tablespace.Ta
 public class OracleDBManager extends DBManagerBase {
 
     public static final String ID = "Oracle";
+    public static boolean VERSION_12C = true;
 
     @Override
     public String getId() {
