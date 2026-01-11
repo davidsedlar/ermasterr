@@ -26,6 +26,8 @@ public class TemplatePreferencePage extends PreferencePage implements IWorkbench
 
     private static final String DEFAULT_TEMPLATE_FILE_EN = "template_en.xls";
 
+    private static final String DEFAULT_TEMPLATE_FILE_ZH = "template_zh.xls";
+
     private static final String DEFAULT_TEMPLATE_FILE_JA = "template_ja.xls";
 
     private TemplateFileListEditor fileListEditor;
@@ -70,6 +72,19 @@ public class TemplatePreferencePage extends PreferencePage implements IWorkbench
             @Override
             public void widgetSelected(final SelectionEvent e) {
                 download(DEFAULT_TEMPLATE_FILE_EN);
+            }
+        });
+
+        final Button buttonZh = new Button(composite, SWT.NONE);
+        buttonZh.setText(ResourceString.getResourceString("label.button.download.template.zh"));
+        buttonZh.addSelectionListener(new SelectionAdapter() {
+
+            /**
+             * {@inheritDoc}
+             */
+            @Override
+            public void widgetSelected(final SelectionEvent e) {
+                download(DEFAULT_TEMPLATE_FILE_ZH);
             }
         });
 
@@ -145,6 +160,10 @@ public class TemplatePreferencePage extends PreferencePage implements IWorkbench
 
     public static InputStream getDefaultExcelTemplateEn() {
         return TemplatePreferencePage.class.getResourceAsStream("/" + DEFAULT_TEMPLATE_FILE_EN);
+    }
+
+    public static InputStream getDefaultExcelTemplateZh() {
+        return TemplatePreferencePage.class.getResourceAsStream("/" + DEFAULT_TEMPLATE_FILE_ZH);
     }
 
     public static InputStream getDefaultExcelTemplateJa() {

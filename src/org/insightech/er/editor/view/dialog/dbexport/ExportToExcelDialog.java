@@ -102,6 +102,7 @@ public class ExportToExcelDialog extends AbstractExportDialog {
         templateCombo.setVisibleItemCount(20);
 
         templateCombo.add(ResourceString.getResourceString("label.template.default.en"));
+        templateCombo.add(ResourceString.getResourceString("label.template.default.zh"));
         templateCombo.add(ResourceString.getResourceString("label.template.default.ja"));
 
         final List<String> fileNames = PreferenceInitializer.getAllExcelTemplateFiles();
@@ -218,8 +219,11 @@ public class ExportToExcelDialog extends AbstractExportDialog {
         if ("en".equals(lang)) {
             templateCombo.select(0);
 
-        } else if ("ja".equals(lang)) {
+        } else if ("zh".equals(lang)) {
             templateCombo.select(1);
+
+        } else if ("ja".equals(lang)) {
+            templateCombo.select(2);
 
         } else {
             templateCombo.select(0);
@@ -290,6 +294,8 @@ public class ExportToExcelDialog extends AbstractExportDialog {
         if (templateIndex == 0) {
             exportExcelSetting.setUsedDefaultTemplateLang("en");
         } else if (templateIndex == 1) {
+            exportExcelSetting.setUsedDefaultTemplateLang("zh");
+        } else if (templateIndex == 2) {
             exportExcelSetting.setUsedDefaultTemplateLang("ja");
         } else {
             exportExcelSetting.setUsedDefaultTemplateLang(null);

@@ -72,6 +72,9 @@ public class ExcelReportAntTask extends ERMasterAntTaskBase {
 			if ("default_en".equals(this.template)) {
 				exportExcelSetting.setUsedDefaultTemplateLang("en");
 
+			} else if ("default_zh".equals(this.template)) {
+				exportExcelSetting.setUsedDefaultTemplateLang("zh");
+
 			} else if ("default_ja".equals(this.template)) {
 				exportExcelSetting.setUsedDefaultTemplateLang("ja");
 
