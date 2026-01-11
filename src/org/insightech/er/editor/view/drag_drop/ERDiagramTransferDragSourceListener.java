@@ -64,6 +64,10 @@ public class ERDiagramTransferDragSourceListener extends AbstractTransferDragSou
             return null;
         }
 
+        if (!(editParts.get(0) instanceof EditPart)) {
+            return null;
+        }
+
         final EditPart editPart = (EditPart) editParts.get(0);
 
         final Object model = editPart.getModel();
@@ -78,6 +82,10 @@ public class ERDiagramTransferDragSourceListener extends AbstractTransferDragSou
         final List editParts = dragSourceViewer.getSelectedEditParts();
         if (editParts.size() != 1) {
             // ドラッグアンドドロップは選択されているオブジェクトが１つのときのみ可能とする
+            return null;
+        }
+
+        if (!(editParts.get(0) instanceof EditPart)) {
             return null;
         }
 

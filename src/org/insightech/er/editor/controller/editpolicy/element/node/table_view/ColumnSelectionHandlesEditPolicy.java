@@ -303,11 +303,15 @@ public class ColumnSelectionHandlesEditPolicy extends NonResizableEditPolicy {
 
             final CreateRelationCommand createNewRelationCommand = new CreateRelationCommand(newRelation, oldForeignKeyColumnList);
 
-            final EditPart sourceEditPart = (EditPart) viewer.getEditPartRegistry().get(referencedTableView);
-            final EditPart targetEditPart = (EditPart) viewer.getEditPartRegistry().get(newTableView);
+            final Object sourceEditPart = viewer.getEditPartRegistry().get(referencedTableView);
+            final Object targetEditPart = viewer.getEditPartRegistry().get(newTableView);
 
-            createNewRelationCommand.setSource(sourceEditPart);
-            createNewRelationCommand.setTarget(targetEditPart);
+            if (sourceEditPart instanceof EditPart) {
+                createNewRelationCommand.setSource((EditPart) sourceEditPart);
+            }
+            if (targetEditPart instanceof EditPart) {
+                createNewRelationCommand.setTarget((EditPart) targetEditPart);
+            }
 
             command.add(createNewRelationCommand);
 

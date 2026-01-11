@@ -66,6 +66,10 @@ public abstract class ComboContributionItem extends ContributionItem {
 
                 for (final Object editPart : selectedEditParts) {
 
+                    if (!(editPart instanceof EditPart)) {
+                        continue;
+                    }
+
                     final Object model = ((EditPart) editPart).getModel();
 
                     if (model instanceof ViewableModel) {

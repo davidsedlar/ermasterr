@@ -30,7 +30,22 @@ public class DeleteWithoutUpdateAction extends DeleteAction {
      */
     @Override
     public Command createDeleteCommand(final List objects) {
-        final Command command = super.createDeleteCommand(objects);
+        if (objects == null || objects.isEmpty()) {
+            return null;
+        }
+
+        final List<EditPart> editParts = new java.util.ArrayList<EditPart>();
+        for (final Object object : objects) {
+            if (object instanceof EditPart) {
+                editParts.add((EditPart) object);
+            }
+        }
+
+        if (editParts.isEmpty()) {
+            return null;
+        }
+
+        final Command command = super.createDeleteCommand(editParts);
 
         if (command == null) {
             return null;

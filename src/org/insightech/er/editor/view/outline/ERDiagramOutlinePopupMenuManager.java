@@ -92,6 +92,9 @@ public class ERDiagramOutlinePopupMenuManager extends MenuManager {
                             }
 
                         } else {
+                            if (!(selectedEditParts.get(0) instanceof EditPart)) {
+                                return;
+                            }
                             final EditPart editPart = (EditPart) selectedEditParts.get(0);
                             for (final Class clazz : ACTION_MAP.keySet()) {
                                 final String actionId = ACTION_MAP.get(clazz);

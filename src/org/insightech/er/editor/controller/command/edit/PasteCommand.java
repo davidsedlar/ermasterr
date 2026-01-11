@@ -153,9 +153,10 @@ public class PasteCommand extends AbstractCommand {
     private void setFocus() {
         // 貼り付けられたテーブルを選択状態にします。
         for (final NodeElement nodeElement : nodeElements) {
-            final EditPart editPart = (EditPart) viewer.getEditPartRegistry().get(nodeElement);
-
-            viewer.getSelectionManager().appendSelection(editPart);
+            final Object editPart = viewer.getEditPartRegistry().get(nodeElement);
+            if (editPart instanceof EditPart) {
+                viewer.getSelectionManager().appendSelection((EditPart) editPart);
+            }
         }
     }
 }

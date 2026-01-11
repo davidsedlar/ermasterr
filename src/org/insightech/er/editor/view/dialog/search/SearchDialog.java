@@ -677,11 +677,11 @@ public class SearchDialog extends Dialog {
     }
 
     private void focus(final Object object) {
-        final EditPart editPart = (EditPart) viewer.getEditPartRegistry().get(object);
+        final Object editPart = viewer.getEditPartRegistry().get(object);
 
-        if (editPart != null) {
-            viewer.select(editPart);
-            viewer.reveal(editPart);
+        if (editPart instanceof EditPart) {
+            viewer.select((EditPart) editPart);
+            viewer.reveal((EditPart) editPart);
         }
     }
 

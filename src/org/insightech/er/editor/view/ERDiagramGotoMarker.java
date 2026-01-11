@@ -21,11 +21,11 @@ public class ERDiagramGotoMarker implements IGotoMarker {
 
     private void focus(final Object object) {
         final GraphicalViewer viewer = editor.getActiveEditor().getGraphicalViewer();
-        final EditPart editPart = (EditPart) viewer.getEditPartRegistry().get(object);
+        final Object editPart = viewer.getEditPartRegistry().get(object);
 
-        if (editPart != null) {
-            viewer.select(editPart);
-            viewer.reveal(editPart);
+        if (editPart instanceof EditPart) {
+            viewer.select((EditPart) editPart);
+            viewer.reveal((EditPart) editPart);
         }
     }
 }

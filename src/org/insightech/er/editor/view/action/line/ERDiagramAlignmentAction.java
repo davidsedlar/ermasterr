@@ -135,6 +135,9 @@ public class ERDiagramAlignmentAction extends SelectionAction {
         final CompoundCommand command = new CompoundCommand();
         command.setDebugLabel(getText());
         for (int i = 0; i < editparts.size(); i++) {
+            if (!(editparts.get(i) instanceof EditPart)) {
+                continue;
+            }
             final EditPart editpart = (EditPart) editparts.get(i);
             command.add(editpart.getCommand(request));
         }
@@ -175,8 +178,14 @@ public class ERDiagramAlignmentAction extends SelectionAction {
         ToolUtilities.filterEditPartsUnderstanding(editparts, request);
         if (editparts.size() < 2 || !editparts.contains(primary))
             return Collections.EMPTY_LIST;
+        if (!(editparts.get(0) instanceof EditPart)) {
+            return Collections.EMPTY_LIST;
+        }
         final EditPart parent = ((EditPart) editparts.get(0)).getParent();
         for (int i = 1; i < editparts.size(); i++) {
+            if (!(editparts.get(i) instanceof EditPart)) {
+                return Collections.EMPTY_LIST;
+            }
             final EditPart part = (EditPart) editparts.get(i);
             if (part.getParent() != parent)
                 return Collections.EMPTY_LIST;

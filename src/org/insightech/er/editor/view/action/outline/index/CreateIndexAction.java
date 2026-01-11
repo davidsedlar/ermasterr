@@ -31,6 +31,14 @@ public class CreateIndexAction extends AbstractOutlineBaseAction {
         final ERDiagram diagram = getDiagram();
 
         final List selectedEditParts = getTreeViewer().getSelectedEditParts();
+        if (selectedEditParts.isEmpty()) {
+            return;
+        }
+
+        if (!(selectedEditParts.get(0) instanceof EditPart)) {
+            return;
+        }
+
         final EditPart editPart = (EditPart) selectedEditParts.get(0);
         final ERTable table = (ERTable) editPart.getModel();
 

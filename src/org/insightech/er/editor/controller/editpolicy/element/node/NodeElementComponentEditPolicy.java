@@ -42,6 +42,9 @@ public class NodeElementComponentEditPolicy extends ComponentEditPolicy {
             final Set<NodeElement> targets = new HashSet<NodeElement>();
 
             for (final Object object : request.getEditParts()) {
+                if (!(object instanceof EditPart)) {
+                    continue;
+                }
                 final EditPart editPart = (EditPart) object;
 
                 final Object model = editPart.getModel();

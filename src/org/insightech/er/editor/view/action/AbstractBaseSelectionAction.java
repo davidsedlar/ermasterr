@@ -72,6 +72,9 @@ public abstract class AbstractBaseSelectionAction extends SelectionAction {
         final List<Command> commandList = new ArrayList<Command>();
 
         for (final Object object : viewer.getSelectedEditParts()) {
+            if (!(object instanceof EditPart)) {
+                continue;
+            }
             final List<Command> subCommandList = getCommand((EditPart) object, event);
             commandList.addAll(subCommandList);
         }
