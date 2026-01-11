@@ -328,9 +328,6 @@ public class ERTableComposite extends Composite {
 
         quickAddButton.addSelectionListener(new SelectionAdapter() {
 
-            /**
-             * {@inheritDoc}
-             */
             @Override
             public void widgetSelected(final SelectionEvent e) {
                 final QuickAddDialog dialog = new QuickAddDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), diagram);
@@ -338,8 +335,10 @@ public class ERTableComposite extends Composite {
                     final List<NormalColumn> columnList = dialog.getColumnList();
 
                     for (final NormalColumn column : columnList) {
-                        addTableData(column, true);
+                        addTableData(column, true, false);
                     }
+
+                    parentDialog.validate();
                 }
             }
 
@@ -513,6 +512,10 @@ public class ERTableComposite extends Composite {
     }
 
     private void addTableData(final NormalColumn column, final boolean add) {
+        addTableData(column, add, true);
+    }
+
+    private void addTableData(final NormalColumn column, final boolean add, final boolean validate) {
         final int index = table.getSelectionIndex();
 
         TableItem tableItem = null;
@@ -535,7 +538,9 @@ public class ERTableComposite extends Composite {
 
         column2TableItem(copyColumn, tableItem);
 
-        parentDialog.validate();
+        if (validate) {
+            parentDialog.validate();
+        }
     }
 
     public void addTableData(final ColumnGroup column) {

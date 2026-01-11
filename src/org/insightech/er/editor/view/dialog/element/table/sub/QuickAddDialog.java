@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.insightech.er.ResourceString;
 import org.insightech.er.common.dialog.AbstractDialog;
@@ -98,11 +99,6 @@ public class QuickAddDialog extends AbstractDialog {
         }
     }
 
-    @Override
-    protected void setData() {
-        initTable();
-    }
-
     private void initTable() {
         editColumnTable.setVisible(false);
 
@@ -117,6 +113,16 @@ public class QuickAddDialog extends AbstractDialog {
         addNewRowToTable();
 
         editColumnTable.setVisible(true);
+    }
+
+    @Override
+    protected void setData() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                initTable();
+            }
+        });
     }
 
     public List<NormalColumn> getColumnList() {
