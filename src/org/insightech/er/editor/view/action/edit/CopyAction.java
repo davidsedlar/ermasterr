@@ -37,7 +37,7 @@ public class CopyAction extends SelectionAction {
     @Override
     @SuppressWarnings("unchecked")
     protected boolean calculateEnabled() {
-        final List<EditPart> list = new ArrayList<EditPart>(getSelectedObjects());
+        final List<Object> list = new ArrayList<>(getSelectedObjects());
 
         if (list.isEmpty()) {
             return false;
