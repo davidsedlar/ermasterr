@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.eclipse.draw2d.FreeformLayer;
 import org.eclipse.draw2d.FreeformLayout;
+import org.eclipse.draw2d.FigureCanvas;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.CompoundSnapToHelper;
 import org.eclipse.gef.EditPolicy;
@@ -164,7 +165,8 @@ public class ERDiagramEditPart extends AbstractModelEditPart {
 
         if (color != null) {
             final Color bgColor = Resources.getColor(color);
-            getViewer().getControl().setBackground(bgColor);
+            final FigureCanvas canvas = (FigureCanvas) getViewer().getControl();
+            canvas.setBackground(bgColor);
         }
 
         for (final Object child : getChildren()) {

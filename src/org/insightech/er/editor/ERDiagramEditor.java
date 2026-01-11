@@ -329,9 +329,15 @@ public class ERDiagramEditor extends GraphicalEditorWithPalette {
 
         addKeyHandler(zoomInAction);
         addKeyHandler(zoomOutAction);
+        
 
-//        final IFigure gridLayer = rootEditPart.getLayer(LayerConstants.GRID_LAYER);
-//        gridLayer.setForegroundColor(Resources.GRID_COLOR);
+        final IFigure gridLayer = rootEditPart.getLayer(LayerConstants.GRID_LAYER);
+        gridLayer.setBackgroundColor(Resources.GRID_COLOR);
+        gridLayer.setOpaque(true);
+
+        final IFigure gridLayer2 = rootEditPart.getLayer(LayerConstants.SCALABLE_LAYERS);
+        gridLayer2.setBackgroundColor(Resources.GRID_COLOR);
+        gridLayer2.setOpaque(true);
 
         IAction action = new ToggleGridAction(viewer);
         getActionRegistry().registerAction(action);
@@ -422,7 +428,7 @@ public class ERDiagramEditor extends GraphicalEditorWithPalette {
     }
 
     @Override
-    public boolean isDirty() {
+	public boolean isDirty() {
         if (isDirty) {
             return true;
         }

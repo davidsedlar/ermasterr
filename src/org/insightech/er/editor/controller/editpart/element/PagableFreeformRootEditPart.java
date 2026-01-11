@@ -1,11 +1,13 @@
 package org.insightech.er.editor.controller.editpart.element;
 
 import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.editparts.GridLayer;
 import org.eclipse.gef.editparts.ScalableFreeformRootEditPart;
 import org.eclipse.swt.graphics.Color;
+import org.insightech.er.Resources;
 import org.insightech.er.editor.model.ERDiagram;
 import org.insightech.er.editor.model.settings.PageSetting;
 
@@ -21,8 +23,22 @@ public class PagableFreeformRootEditPart extends ScalableFreeformRootEditPart {
      * {@inheritDoc}
      */
     @Override
+    protected Figure createFigure() {
+        final Figure figure = (Figure) super.createFigure();
+        figure.setBackgroundColor(Resources.GRID_COLOR);
+        figure.setOpaque(true);
+        return figure;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     protected GridLayer createGridLayer() {
-        return new PagableGridLayer();
+        final GridLayer gridLayer = new PagableGridLayer();
+        gridLayer.setBackgroundColor(Resources.GRID_COLOR);
+        gridLayer.setOpaque(true);
+        return gridLayer;
     }
 
     private class PagableGridLayer extends GridLayer {
@@ -33,16 +49,27 @@ public class PagableFreeformRootEditPart extends ScalableFreeformRootEditPart {
          * {@inheritDoc}
          */
         @Override
+        protected void paintFigure(final Graphics g) {
+            if (getBackgroundColor() != null) {
+                g.setBackgroundColor(getBackgroundColor());
+                g.fillRectangle(getBounds());
+            }
+            super.paintFigure(g);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
         protected void paintGrid(final Graphics g) {
             super.paintGrid(g);
-
-            final Rectangle clip = g.getClip(Rectangle.SINGLETON);
 
             final PageSetting pageSetting = diagram.getPageSetting();
 
             final int width = pageSetting.getWidth();
             final int height = pageSetting.getHeight();
 
+            final Rectangle clip = g.getClip(Rectangle.SINGLETON);
             final Rectangle rect = clip;
 
             final Color color = g.getForegroundColor();
