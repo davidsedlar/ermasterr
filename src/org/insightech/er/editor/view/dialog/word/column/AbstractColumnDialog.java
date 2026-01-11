@@ -81,7 +81,7 @@ public abstract class AbstractColumnDialog extends AbstractWordDialog {
         filterComposite.setLayout(layout);
 
         final FontData fontData = Display.getCurrent().getSystemFont().getFontData()[0];
-        final Font font = Resources.getFont(fontData.getName(), 7, SWT.NORMAL);
+        final Font font = Resources.getFont(fontData.getName(), 12, SWT.NORMAL);
 
         final Label label = new Label(filterComposite, SWT.NONE);
         label.setText(ResourceString.getResourceString("label.filter"));
