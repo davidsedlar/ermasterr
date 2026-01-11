@@ -40,7 +40,9 @@ public class Resources {
 
     public static Color REMOVED_COLOR = new Color(Display.getCurrent(), 255, 128, 128);
 
-    public static Color GRID_COLOR = new Color(Display.getCurrent(), 255, 255, 255);
+    public static Color GRID_COLOR = new Color(Display.getCurrent(), 220, 220, 255);
+
+    public static Color GRID_BACKGROUND_COLOR = new Color(Display.getCurrent(), 255, 255, 255);
 
     public static Color DEFAULT_TABLE_COLOR = new Color(Display.getCurrent(), 128, 128, 192);
 

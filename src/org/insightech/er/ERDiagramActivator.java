@@ -57,6 +57,7 @@ public class ERDiagramActivator extends AbstractUIPlugin {
         Resources.UPDATED_COLOR.dispose();
         Resources.REMOVED_COLOR.dispose();
         Resources.GRID_COLOR.dispose();
+        Resources.GRID_BACKGROUND_COLOR.dispose();
         Resources.DEFAULT_TABLE_COLOR.dispose();
         Resources.SELECTED_REFERENCED_COLUMN.dispose();
         Resources.SELECTED_FOREIGNKEY_COLUMN.dispose();

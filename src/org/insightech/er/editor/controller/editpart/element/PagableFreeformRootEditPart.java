@@ -25,7 +25,7 @@ public class PagableFreeformRootEditPart extends ScalableFreeformRootEditPart {
     @Override
     protected Figure createFigure() {
         final Figure figure = (Figure) super.createFigure();
-        figure.setBackgroundColor(Resources.GRID_COLOR);
+        figure.setBackgroundColor(Resources.GRID_BACKGROUND_COLOR);
         figure.setOpaque(true);
         return figure;
     }
@@ -36,7 +36,7 @@ public class PagableFreeformRootEditPart extends ScalableFreeformRootEditPart {
     @Override
     protected GridLayer createGridLayer() {
         final GridLayer gridLayer = new PagableGridLayer();
-        gridLayer.setBackgroundColor(Resources.GRID_COLOR);
+        gridLayer.setBackgroundColor(Resources.GRID_BACKGROUND_COLOR);
         gridLayer.setOpaque(true);
         return gridLayer;
     }

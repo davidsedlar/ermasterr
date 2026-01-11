@@ -209,8 +209,8 @@ public class ERDiagramEditor extends GraphicalEditorWithPalette {
         initDragAndDrop(viewer);
 
         viewer.setProperty(MouseWheelHandler.KeyGenerator.getKey(SWT.MOD1), MouseWheelZoomHandler.SINGLETON);
-        viewer.setProperty(SnapToGrid.PROPERTY_GRID_ENABLED, false);
-        viewer.setProperty(SnapToGrid.PROPERTY_GRID_VISIBLE, false);
+        viewer.setProperty(SnapToGrid.PROPERTY_GRID_ENABLED, true); // 开启网格线
+        viewer.setProperty(SnapToGrid.PROPERTY_GRID_VISIBLE, true); // 显示网格线
         viewer.setProperty(SnapToGeometry.PROPERTY_SNAP_ENABLED, true);
 
         final MenuManager menuMgr = new ERDiagramPopupMenuManager(getActionRegistry(), diagram);
@@ -332,11 +332,12 @@ public class ERDiagramEditor extends GraphicalEditorWithPalette {
         
 
         final IFigure gridLayer = rootEditPart.getLayer(LayerConstants.GRID_LAYER);
-        gridLayer.setBackgroundColor(Resources.GRID_COLOR);
+        gridLayer.setForegroundColor(Resources.GRID_COLOR);
+        gridLayer.setBackgroundColor(Resources.GRID_BACKGROUND_COLOR);
         gridLayer.setOpaque(true);
 
         final IFigure gridLayer2 = rootEditPart.getLayer(LayerConstants.SCALABLE_LAYERS);
-        gridLayer2.setBackgroundColor(Resources.GRID_COLOR);
+        gridLayer2.setBackgroundColor(Resources.GRID_BACKGROUND_COLOR);
         gridLayer2.setOpaque(true);
 
         IAction action = new ToggleGridAction(viewer);
