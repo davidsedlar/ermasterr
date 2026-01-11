@@ -102,7 +102,6 @@ public class JDBCPreferencePage extends PreferencePage implements IWorkbenchPref
 
         for (final JDBCDriverSetting setting : PreferenceInitializer.getJDBCDriverSettingList()) {
             final TableItem tableItem = new TableItem(table, SWT.NONE);
-            tableItem.setBackground(ColorConstants.white);
             tableItem.setText(0, Format.null2blank(setting.getDb()));
             tableItem.setText(1, Format.null2blank(setting.getClassName()));
             tableItem.setText(2, Format.null2blank(setting.getPath()));
