@@ -9,6 +9,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.insightech.er.ResourceString;
 import org.insightech.er.common.dialog.AbstractDialog;
 import org.insightech.er.common.exception.InputException;
+import org.insightech.er.common.widgets.AwtFontCache;
 import org.insightech.er.common.widgets.CompositeFactory;
 import org.insightech.er.common.widgets.RowHeaderTable;
 import org.insightech.er.common.widgets.table.CellEditWorker;
@@ -36,6 +37,8 @@ public class QuickAddDialog extends AbstractDialog {
 
     @Override
     protected void initialize(final Composite composite) {
+        AwtFontCache.initialize();
+
         editColumnTable = CompositeFactory.createRowHeaderTable(composite, 695, 350, 75, 25, 1, false, true);
 
         editColumnTable.setCellEditWorker(new CellEditWorker() {

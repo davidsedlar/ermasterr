@@ -295,7 +295,7 @@ public class CompositeFactory {
             label.setLayoutData(gridData);
         }
 
-        final FontData fontData = Display.getCurrent().getSystemFont().getFontData()[0];
+        final FontData fontData = Display.getDefault().getSystemFont().getFontData()[0];
         final Font font = Resources.getFont(fontData.getName(), 8);
         label.setFont(font);
 

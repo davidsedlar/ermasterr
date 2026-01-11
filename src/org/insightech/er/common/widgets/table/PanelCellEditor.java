@@ -10,8 +10,7 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
-import org.eclipse.swt.graphics.FontData;
-import org.eclipse.swt.widgets.Display;
+import org.insightech.er.common.widgets.AwtFontCache;
 
 public abstract class PanelCellEditor extends AbstractCellEditor implements TableCellRenderer, TableCellEditor {
 
@@ -40,11 +39,7 @@ public abstract class PanelCellEditor extends AbstractCellEditor implements Tabl
     }
 
     protected static Font getAwtFont() {
-        final FontData fontData = Display.getCurrent().getSystemFont().getFontData()[0];
-
-        final Font font = new Font(fontData.getName(), Font.PLAIN, 12);
-
-        return font;
+        return AwtFontCache.getSystemFont();
     }
 
     protected void addComponent(final Component component, final int x, final int y, final int w, final int h) {

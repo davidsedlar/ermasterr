@@ -221,7 +221,7 @@ public class ERDiagramActionBarContributor extends ActionBarContributor {
 
                                 } else {
                                     fontSizeContributionItem.setText(String.valueOf(ViewableModel.DEFAULT_FONT_SIZE));
-                                    viewableModel.setFontSize(fontSize);
+                                    viewableModel.setFontSize(ViewableModel.DEFAULT_FONT_SIZE);
                                 }
                             }
                         }

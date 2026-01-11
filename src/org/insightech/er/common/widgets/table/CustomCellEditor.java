@@ -17,9 +17,8 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.TextAction;
 
-import org.eclipse.swt.graphics.FontData;
-import org.eclipse.swt.widgets.Display;
 import org.insightech.er.ResourceString;
+import org.insightech.er.common.widgets.AwtFontCache;
 
 public class CustomCellEditor extends DefaultCellEditor implements TableCellEditor {
 
@@ -80,9 +79,7 @@ public class CustomCellEditor extends DefaultCellEditor implements TableCellEdit
         private static final long serialVersionUID = 5180658114688605208L;
 
         private TextFieldPopupMenu() {
-            final FontData fontData = Display.getCurrent().getSystemFont().getFontData()[0];
-
-            final Font font = new Font(fontData.getName(), Font.PLAIN, 12);
+            final Font font = AwtFontCache.getSystemFont();
 
             final JMenuItem cutMenuItem = this.add(new CutAction());
             cutMenuItem.setFont(font);

@@ -59,7 +59,7 @@ public class TemplatePreferencePage extends PreferencePage implements IWorkbench
 
     private void createButtonComposite(final Composite composite) {
         final GridLayout layout = new GridLayout();
-        layout.numColumns = 2;
+        layout.numColumns = 4;
         composite.setLayout(layout);
 
         final Button buttonEn = new Button(composite, SWT.NONE);

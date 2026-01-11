@@ -54,8 +54,6 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
-import org.eclipse.swt.graphics.FontData;
-import org.eclipse.swt.widgets.Display;
 import org.insightech.er.ERDiagramActivator;
 import org.insightech.er.ResourceString;
 import org.insightech.er.common.widgets.table.CellEditWorker;
@@ -85,7 +83,7 @@ public class RowHeaderTable extends JScrollPane implements ClipboardOwner {
 
     private boolean editable;
 
-    private final Color MODIFIED_COLOR = new Color(0xc7, 0xff, 0xb7);
+    private final Color MODIFIED_COLOR = UIManager.getColor("Table.selectionBackground");
 
     public RowHeaderTable(final int width, final int height, final int rowHeaderWidth, final int rowHeight, final boolean iconEnable, final boolean editable) {
         this.editable = editable;
@@ -124,9 +122,11 @@ public class RowHeaderTable extends JScrollPane implements ClipboardOwner {
                             c.setBackground(MODIFIED_COLOR);
 
                         } else {
-                            c.setBackground(null);
+                            c.setBackground(UIManager.getColor("Table.background"));
                         }
 
+                    } else {
+                        c.setBackground(UIManager.getColor("Table.selectionBackground"));
                     }
 
                 }
@@ -297,7 +297,10 @@ public class RowHeaderTable extends JScrollPane implements ClipboardOwner {
         });
 
         table.setRowHeight(rowHeight);
-        table.setGridColor(new Color(230, 230, 230));
+        table.setGridColor(UIManager.getColor("Table.gridColor"));
+        table.setFont(UIManager.getFont("Table.font"));
+        table.setForeground(UIManager.getColor("Table.foreground"));
+        table.setBackground(UIManager.getColor("Table.background"));
         tableModel = new DefaultTableModel();
         table.setModel(tableModel);
 
@@ -354,6 +357,21 @@ public class RowHeaderTable extends JScrollPane implements ClipboardOwner {
 
                     for (int i = 0; i < selectedIndices.length; i++) {
                         table.addRowSelectionInterval(selectedIndices[i], selectedIndices[i]);
+                    }
+                }
+
+            });
+
+            rowHeader.addMouseListener(new MouseAdapter() {
+
+                @Override
+                public void mouseClicked(final MouseEvent e) {
+                    final int index = rowHeader.locationToIndex(e.getPoint());
+                    if (index != -1 && listModel != null) {
+                        final String value = listModel.getElementAt(index);
+                        if ("+".equals(value) && cellEditWorker != null) {
+                            cellEditWorker.addNewRow();
+                        }
                     }
                 }
 
@@ -553,20 +571,25 @@ public class RowHeaderTable extends JScrollPane implements ClipboardOwner {
     }
 
     public void removeData() {
-        try {
-            SwingUtilities.invokeAndWait(new Runnable() {
-                @Override
-                public void run() {
-                    if (listModel != null) {
-                        listModel.removeAllElements();
-                    }
-
-                    tableModel.setRowCount(0);
-                    tableModel.setColumnCount(0);
+        final Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                if (listModel != null) {
+                    listModel.removeAllElements();
                 }
-            });
 
-        } catch (final InterruptedException e) {} catch (final InvocationTargetException e) {}
+                tableModel.setRowCount(0);
+                tableModel.setColumnCount(0);
+            }
+        };
+
+        if (EventQueue.isDispatchThread()) {
+            runnable.run();
+        } else {
+            try {
+                SwingUtilities.invokeAndWait(runnable);
+            } catch (final InterruptedException e) {} catch (final InvocationTargetException e) {}
+        }
 
         if (cellEditWorker != null) {
             cellEditWorker.changeRowNum();
@@ -713,9 +736,7 @@ public class RowHeaderTable extends JScrollPane implements ClipboardOwner {
         private JMenuItem deleteMenu;
 
         private TablePopupMenu() {
-            final FontData fontData = Display.getCurrent().getSystemFont().getFontData()[0];
-
-            final Font font = new Font(fontData.getName(), Font.PLAIN, 12);
+            final Font font = AwtFontCache.getSystemFont();
 
             if (clipbordOn) {
                 if (editable) {
