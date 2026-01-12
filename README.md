@@ -4,63 +4,64 @@ A fork of ERMaster. Faster, Better, VCS-friendly.
 
 Original version is http://ermaster.sourceforge.net  
 
-> ERMaster is GUI editor for ER diagram.  
-> It runs as Eclipse plug-in.  
-> It can be done graphically to making ER diagram, printing ER diagram, exporting the DDL from ER diagram, etc. .  
-> Moreover, importing from DB, management of the group, and the historical management, etc. are supported.  
+* ERMaster is GUI editor for ER diagram.  
+* It runs as Eclipse plug-in.  
+* It can be done graphically to making ER diagram, printing ER diagram, exporting the DDL from ER diagram, etc. .  
+* Moreover, importing from DB, management of the group, and the historical management, etc. are supported.  
+* More importantly, ERMaster allows you to model your database once and then export DDL scripts for various database systems—such as MySQL, Oracle, SQL Server, PostgreSQL, and more.
+
+中文文档：<https://jeesite.com/docs/code-gen/#方式二-ermaster-建模>
 
 # Install
 
-1. Install Eclipse 
- 
-Package: `Eclipse IDE for Java Developers`
+Install the ERMaster plugin in [Eclipse](https://www.eclipse.org/downloads/) or [DBeaver Community](https://dbeaver.io/download/):
 
-2. Install PDE plug-in  
+1. Go to **Help → Install New Software**.
+2. In the **Work with** field, enter: `https://jeesite.com/ermaster` and press **Enter**.
+3. Click **Select All**.
+4. **Uncheck** the option *Group items by category*.
+3. **Uncheck** the option *Contact all update sites during install to find required software*.
+5. Click **Next** repeatedly until the **Finish** button appears, and complete the installation.
 
-Plug-in name: `Eclipse PDE Plug-in Developer Resources`
+---
 
-3. Install ermasterr 
- 
-Update Site:
+If you are using the latest version of **Spring Tool Suite (STS)**, you must first install the **GEF dependency library**:
 
-`https://thinkgem.github.io/ermasterr/updatesite`
+1. Go to **Help → Install New Software**.
+2. In the **Work with** field, enter: `http://download.eclipse.org/tools/gef/classic/releases/latest` and press **Enter**.
+3. Click **Select All**.
+3. **Uncheck** *Contact all update sites during install to find required software*.
+4. Click **Next** repeatedly until the **Finish** button appears, and complete the installation.
 
-or
+After installing GEF, proceed with the same steps above to install the ERMaster plugin.
 
-Copy the contents of the [org.insightech.er_x.y.z.jar](https://gitee.com/thinkgem/ermasterr/tree/master/updatesite/plugins) latest version to the dropins folder located in the root of your Eclipse installation.
+---
 
+Alternatively, use the pre-integrated **Eclipse + ERMaster bundle**:  
+Download directly from the attachments section of JeeSite V5.x: [https://gitee.com/thinkgem/jeesite5/attach_files](https://gitee.com/thinkgem/jeesite5/attach_files)
+
+---
+
+Alternatively, you can manually download the ERMaster source repository from:  
+
+```
+git clone https://gitee.com/thinkgem/jeesite5.git
+```
+
+After downloading it to your local disk, in the **Work with** field of the Install dialog, 
+directly specify the local path to the `/ermasterr/updatesite` directory inside the downloaded repository to perform the installation.
+
+If you are using an older version of Eclipse, you can also install other versions:
+
+Copy the contents of the `/ermasterr/updatesite/plugins/org.insightech.er_x.y.z.jar` version 
+to the dropins folder located in the root of your Eclipse installation.
 Directory tree example:
 
 ```
-your_eclipse_install_dir/
-└── dropins/
-    └── ermasterr/
-        └── eclipse/
-            └── plugins/
-                └── org.insightech.er_x.y.z.jar
-```
-
-or put jar file to dropins directly.
-
-```
-your_eclipse_install_dir/
+Eclipse/
 └── dropins/
     └── org.insightech.er_x.y.z.jar
 ```
-
-# Features
-
-## Faster
-
-* ermasterr prevented a increase of the drawing time by getting rid of tabs of each category and skipping expensive initialization for each category.
-
-## Better
-
-* ermasterr has fixed the issue that erdiagram data file size becomes gigantic in sometimes by writing a large amount of same xml tags. (https://sourceforge.net/p/ermaster/bugs/119/)
-
-## VCS-friendly
-
-* ermasterr can write git-mergable erdiagram data as far as possible. (https://sourceforge.net/p/ermaster/feature-requests/104/)
 
 # Release
 
@@ -70,7 +71,8 @@ your_eclipse_install_dir/
 4. File -> Export -> Plug-in Development -> Deployable features.
 5. Open `/updatesite/site.xml` -> Add Feature new version and right-click Remove old version and update upgrade info.
 
-
 # License
 
 Apache License V2.0
+
+<https://jeesite.com>
